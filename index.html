@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<!-- fp-cache-bust 7.8.22-web.1-35ac48c631a4 pck=35ac48c631a471eef1ba7fe3ff7d38e6802e7e0383b99599b4c793d993e19f4c -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
 		<title>Farm Parity PC</title>
 		<style>
 html, body, #canvas {
@@ -93,7 +94,42 @@ body {
 		<link id="-gd-engine-icon" rel="icon" type="image/png" href="index.icon.png" />
 <link rel="apple-touch-icon" href="index.apple-touch-icon.png"/>
 
-	</head>
+	
+<style id="fp-mobile">
+html,body{margin:0;padding:0;overflow:hidden;overscroll-behavior:none;touch-action:none;background:#1c140e;height:100%;width:100%;}
+#canvas,#canvas-wrapper,canvas{touch-action:none;}
+:root{--fp-safe-l:0px;--fp-safe-t:0px;--fp-safe-r:0px;--fp-safe-b:0px;}
+</style>
+<script>
+(function(){
+  function safe(){
+    var s=getComputedStyle(document.documentElement);
+    function n(v){return parseFloat(v)||0;}
+    var l=n(s.getPropertyValue('env(safe-area-inset-left)'))||n(s.getPropertyValue('constant(safe-area-inset-left)'));
+    var t=n(s.getPropertyValue('env(safe-area-inset-top)'))||n(s.getPropertyValue('constant(safe-area-inset-top)'));
+    var r=n(s.getPropertyValue('env(safe-area-inset-right)'))||n(s.getPropertyValue('constant(safe-area-inset-right)'));
+    var b=n(s.getPropertyValue('env(safe-area-inset-bottom)'))||n(s.getPropertyValue('constant(safe-area-inset-bottom)'));
+    var w=window.innerWidth||1, h=window.innerHeight||1;
+    var sc=Math.min(w/960,h/540);
+    document.documentElement.style.setProperty('--fp-safe-l', (sc?l/sc:0)+'px');
+    document.documentElement.style.setProperty('--fp-safe-t', (sc?t/sc:0)+'px');
+    document.documentElement.style.setProperty('--fp-safe-r', (sc?r/sc:0)+'px');
+    document.documentElement.style.setProperty('--fp-safe-b', (sc?b/sc:0)+'px');
+  }
+  function block(e){ if(e.cancelable) e.preventDefault(); }
+  document.addEventListener('gesturestart', block, {passive:false});
+  document.addEventListener('gesturechange', block, {passive:false});
+  document.addEventListener('gestureend', block, {passive:false});
+  document.addEventListener('touchmove', function(e){ if(e.touches.length>1) block(e); }, {passive:false});
+  window.addEventListener('resize', safe);
+  window.addEventListener('orientationchange', safe);
+  document.addEventListener('DOMContentLoaded', safe);
+  safe();
+  if(/[?&]touch=1/.test(String(location.search||''))) window.__fpForceTouch=true;
+  if(/[?&]touch=1/.test(String(location.hash||''))) window.__fpForceTouch=true;
+})();
+</script>
+</head>
 	<body>
 		<canvas id="canvas">
 			Your browser does not support the canvas tag.
@@ -109,9 +145,9 @@ body {
 			<div id="status-notice"></div>
 		</div>
 
-		<script src="index.js"></script>
+		<script src="index.js?v=7.8.22-web.1-35ac48c631a4"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":34201200,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":35524328,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4,"mainPack":"index.pck?v=7.8.22-web.1-35ac48c631a4"};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 
