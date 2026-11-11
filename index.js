@@ -666,7 +666,7 @@ const Engine = (function () {
 	Engine.load = function (basePath, size) {
 		if (loadPromise == null) {
 			loadPath = basePath;
-			loadPromise = preloader.loadPromise(`${loadPath}.wasm?v=7.8.22-web.3-b43aa2a82df4`, size, true);
+			loadPromise = preloader.loadPromise(`${loadPath}.wasm?v=7.8.23-web-c90ab335888f`, size, true);
 			requestAnimationFrame(preloader.animateProgress);
 		}
 		return loadPromise;
@@ -821,13 +821,12 @@ const Engine = (function () {
 				// Add main-pack argument.
 				const exe = this.config.executable;
 				const pack = this.config.mainPack || `${exe}.pck`;
-				const packPath = String(pack).split('?')[0];
-				this.config.args = ['--main-pack', packPath].concat(this.config.args);
+				this.config.args = ['--main-pack', pack].concat(this.config.args);
 				// Start and init with execName as loadPath if not inited.
 				const me = this;
 				return Promise.all([
 					this.init(exe),
-					this.preloadFile(pack, packPath),
+					this.preloadFile(pack, pack),
 				]).then(function () {
 					return me.start.apply(me);
 				});
